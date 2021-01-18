@@ -2,10 +2,19 @@
     object-fit: contain;
     width: 100%;
 }
-.carduser{
-    display: flex;
-    
-}
+
 .card{
     width: 300px !important;
+}
+.carduser{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.carduser-btn{
+    width: 100%;
+}
+.carduser-title{
+    font-weight: 700;
+    font-size: 17px;
 }

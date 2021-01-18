@@ -1,28 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect} from "react";
 import {
   Card,
   CardImg,
   CardText,
   CardBody,
-  CardTitle,
   CardSubtitle,
   Button,
 } from "reactstrap";
 import { connect } from "react-redux";
-import { fetchData } from "../actions";
+import { fetchData, fetchUser } from "../actions";
 import './CardUser.css';
-const CardUser = (props) => {
+const CardUser = ({fetchData,data,state,fetchUser}) => {
+  
   useEffect(() => {
-    props.fetchData();
-  }, []);
+    fetchData();
+  },[fetchData]);
 
-  console.log(props.data);
+  console.log(data);
+
+  if(!data){
+    return(<div className="carduser">Loading Users...</div>)
+  }
 
   return (
-    <div>
-      {props.data.map((user) => {
+    <div className="carduser">
+      {data.map((user) => {
         return (
-          <div className="carduser">
+          <div>
             <Card>
               <CardImg
                 top
@@ -31,15 +35,15 @@ const CardUser = (props) => {
                 alt="Card image cap"
               />
               <CardBody>
-                <CardTitle tag="h5">Card title</CardTitle>
+                <p className="carduser-title">{`${user.firstName} ${user.lastName}`}</p>
                 <CardSubtitle tag="h6" className="mb-2 text-muted">
-                  Card subtitle
+                  Email:
                 </CardSubtitle>
                 <CardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {user.email}
                 </CardText>
-                <Button>Button</Button>
+                <Button className="carduser-btn" onClick={() => {fetchUser(user);
+                console.log(state)}}>Select</Button>
               </CardBody>
             </Card>
           </div>
@@ -50,9 +54,10 @@ const CardUser = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { data: state.data.data };
+  return { data: state.data.data,state:state };
 };
 
 export default connect(mapStateToProps, {
   fetchData: fetchData,
+  fetchUser: fetchUser
 })(CardUser);

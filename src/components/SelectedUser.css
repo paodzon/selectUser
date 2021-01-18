@@ -1,0 +1,26 @@
+.selectedUser{
+    display: flex;
+    justify-content: center;
+    padding:50px !important;
+}
+
+.selectedUser-img{
+    display: flex;
+}
+.selectedUser-con{
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+}
+.selectedUser-details{
+    margin-left: 20px;
+}
+.selectedUser-nouser{
+    display: flex;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 50px;
+    padding-top:30px !important;
+    padding-bottom:30px !important;
+}
